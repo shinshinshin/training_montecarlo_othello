@@ -15,20 +15,30 @@ boads = list()
 boads.append(boad)
 rounds = 0
 
-for i in range(59):
+for i in range(60):
 	now_boad = boads[-1]
 	blank = now_boad.blank
+	tmp_blank = list(blank)
 	if now_boad.turn == "":
 		break
 	while rounds == i:
-		rnd = random.randint(0,len(blank)-1)
-		row = blank[rnd] / 8
-		col = blank[rnd] % 8
+		rnd = random.randint(0,len(tmp_blank)-1)
+		row = tmp_blank[rnd] / 8
+		col = tmp_blank[rnd] % 8
 		color = now_boad.turn
 		masu = now_boad.boad[row][col]
 		if now_boad.chk_puttable(masu,color):
 			next_boad = now_boad.put(row,col)
 			boads.append(next_boad)
 			rounds = rounds + 1
-#boads[-1].print_boad()
-print(boads[-1].game_result())
+		else:
+			tmp_blank.pop(rnd)
+			if len(tmp_blank) == 0:
+				now_boad.turn = ""
+				break
+last = boads[-1]
+last.print_boad()
+black_num = len(filter(lambda masu: masu.state == "black",last.all_masu))
+white_num = len(filter(lambda masu: masu.state == "white",last.all_masu))
+print(black_num,white_num)
+print(last.game_result())

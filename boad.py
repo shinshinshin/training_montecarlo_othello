@@ -32,9 +32,10 @@ class Boad:
 
 	def game_result(self):
 		black_num = len(filter(lambda masu: masu.state == "black",self.all_masu))
-		if black_num > 32:
+		white_num = len(filter(lambda masu: masu.state == "white",self.all_masu))
+		if black_num > white_num:
 			return "black"
-		elif black_num == 32:
+		elif black_num == white_num:
 			return "draw"
 		else:
 			return "white"
@@ -136,11 +137,9 @@ class Boad:
 			for col in range(8):
 				masu = self.boad[row][col]
 				if masu.state== "black":
-					row_str += "●"
+					row_str += "b"
 				elif masu.state== "white":
-					row_str += "○"
+					row_str += "w"
 				else:
-					row_str += "--"
+					row_str += "-"
 			print(row_str)
-
-
