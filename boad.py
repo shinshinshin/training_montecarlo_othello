@@ -43,17 +43,21 @@ class Boad:
 		if base is None:
 			self.turn = "black"
 		else:
-			turn = base.turn
+			turn = other_color(base.turn)
 			if turn == "black":
 				if self.blackable():
 					self.turn = "black"
-				else:
+				elif self.whitable():
 					self.turn = "white"
+				else:
+					self.turn = ""
 			if turn == "white":
 				if self.whitable():
 					self.turn = "white"
-				else:
+				elif self.blackable():
 					self.turn = "black"
+				else:
+					self.turn = ""
 
 	def blackable(self):
 		for masu in self.all_masu:
