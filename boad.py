@@ -23,6 +23,8 @@ class Boad:
 					self.boad[i][j] = Masu(i,j,base.boad[i][j].state)
 
 		self.all_masu = reduce(lambda a,b: a+b, self.boad)
+		self.set_turn(base)
+
 
 	def is_end(self):
 		flg = True
