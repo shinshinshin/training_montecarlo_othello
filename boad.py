@@ -30,6 +30,13 @@ class Boad:
 		self.all_masu = reduce(lambda a,b: a+b, self.boad)
 		self.set_turn(base)
 
+	def select_next(self):
+		try_num = 1000
+		candidate = list()
+		for masu in self.all_masu:
+			if masu.chk_puttable(masu,other_color(self.turn)):
+				candidate.append(masu)
+
 	def game_result(self):
 		black_num = len(filter(lambda masu: masu.state == "black",self.all_masu))
 		white_num = len(filter(lambda masu: masu.state == "white",self.all_masu))
