@@ -27,7 +27,7 @@ def one_game(boad):
 			break
 		while flg:
 			rnd = random.randint(0,len(tmp_blank)-1)
-			row = tmp_blank[rnd] / 8
+			row = tmp_blank[rnd] // 8
 			col = tmp_blank[rnd] % 8
 			color = now_boad.turn
 			masu = now_boad.boad[row][col]

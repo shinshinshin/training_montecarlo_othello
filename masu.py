@@ -8,6 +8,7 @@ class Masu:
 		self.row = row
 		self.col = col
 		self.state = state
+		self.point = 0
 
 	#direction for a masu
 	def set_direc(self):
