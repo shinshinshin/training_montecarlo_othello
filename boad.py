@@ -16,6 +16,11 @@ class Boad:
 					self.boad[i][j] = Masu(i,j)
 			self.boad[3][3].state = self.boad[4][4].state = "black"
 			self.boad[4][3].state = self.boad[3][4].state = "white"
+			self.blank = range(64)
+			self.blank.remove(3*8+3)
+			self.blank.remove(3*8+4)
+			self.blank.remove(4*8+3)
+			self.blank.remove(4*8+4)
 		else:
 			for i in range(8):
 				self.boad[i] = [None] * 8
@@ -24,15 +29,6 @@ class Boad:
 
 		self.all_masu = reduce(lambda a,b: a+b, self.boad)
 		self.set_turn(base)
-
-
-	def is_end(self):
-		flg = True
-		for masu in self.all_masu:
-			if masu.state == "":
-				flg = False
-				break
-		return flg
 
 	def game_result(self):
 		black_num = len(filter(lambda masu: masu.state == "black",self.all_masu))
@@ -126,6 +122,8 @@ class Boad:
 		next_boad = Boad(self)
 		piece = Masu(row,col,self.turn)
 		next_boad = self.reverse(next_boad,piece)
+		next_boad.blank = list(self.blank)
+		next_boad.blank.remove(row*8+col)
 		return next_boad
 
 	def print_boad(self):
